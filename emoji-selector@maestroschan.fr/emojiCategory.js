@@ -143,11 +143,11 @@ var EmojiCategory = class EmojiCategory {
 	_searchInKeywords(searchedText, i) {
 		for (let k = 1; k < this.emojiButtons[i].keywords.length; k++) {
 			if (this.emojiButtons[i].keywords[k].includes(searchedText)) {
-				// If a keyword corresponds to the searched string, but the name
-				// corresponds too, we can assume the emoji is already in the
-				// displayed result.
-				return !( this._searchExactMatch(searchedText, i)
-				                       || this._searchInName(searchedText, i) );
+				// If a keyword corresponds to the searched string, but the
+				// first name corresponds too, we can assume the emoji is
+				// already in the displayed result.
+				return k != 0 || !(this._searchExactMatch(searchedText, i)
+									|| this._searchInName(searchedText, i));
 			}
 		}
 		return false;
